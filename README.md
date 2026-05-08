@@ -1,4 +1,9 @@
 # Note: change your IP address according to your need, I just use 127.0.0.1 
+python3     	Runs the Python 3 interpreter
+main.py     	Python script (the scanner program)
+127.0.0.1    	Target IP address 
+-s 1	        Start scanning from port 1
+-e 100      	End scanning at port 100
 
 # Professional Python Port Scanner
 
