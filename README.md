@@ -1,3 +1,5 @@
+# Note: cange your IP address according to your need, I just use 127.0.0.1 
+
 # Professional Python Port Scanner
 
 This project is a beginner-friendly Python port scanner for authorized cybersecurity learning and lab testing.
