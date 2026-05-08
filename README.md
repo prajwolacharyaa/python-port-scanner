@@ -1,259 +1,306 @@
 # Professional Python Port Scanner
 
-A beginner-friendly but portfolio-ready TCP port scanner built for cybersecurity and penetration testing students. It uses Python socket programming, concurrent scanning, and lightweight banner grabbing to identify open ports and likely services on authorized targets.
+This project is a beginner-friendly Python port scanner for authorized cybersecurity learning and lab testing.
 
-![CLI Demo](./docs/images/port-scanner-demo.svg)
+Use this project only on systems and networks you own or have permission to test.
 
-## Ethical Disclaimer
+## To Do in Kali Linux
 
-This project is strictly for educational use and authorized security testing only. Do not scan systems, networks, or services unless you have explicit permission from the owner. Unauthorized scanning may violate laws, policies, and acceptable use agreements.
+### Step 1: Open Terminal
 
-## Why This Project Matters
+Open your Kali Linux terminal inside UTM.
 
-This project helps demonstrate:
+### Step 2: Clone or copy the project
 
-- Networking fundamentals and TCP communication
-- Python socket programming
-- Reconnaissance basics and service discovery
-- Multi-threading for security automation
-- Clean project organization for GitHub portfolios
-
-## Features
-
-- Custom IP address or hostname input
-- Configurable port range scanning
-- Open TCP port detection
-- Multi-threaded scanning for improved speed
-- Basic banner grabbing and service identification
-- Configurable timeout handling
-- Defensive error handling
-- Clean CLI output for easy reading
-- Save results as `.txt` or `.json`
-- Modular Python code that is easy to study and extend
-
-## Project Structure
-
-```text
-professional-port-scanner/
-├── LICENSE
-├── README.md
-├── main.py
-├── requirements.txt
-├── .gitignore
-├── docs/
-│   └── images/
-│       ├── port-scanner-demo.svg
-│       └── port-scanner-results.svg
-├── port_scanner/
-│   ├── __init__.py
-│   ├── __main__.py
-│   ├── cli.py
-│   ├── models.py
-│   ├── scanner.py
-│   ├── utils.py
-│   └── writer.py
-└── tests/
-    └── test_scanner.py
-```
-
-## Screenshots
-
-### CLI Scan Output
-
-![CLI Output](./docs/images/port-scanner-demo.svg)
-
-### Saved Results View
-
-![Saved Report](./docs/images/port-scanner-results.svg)
-
-## How It Works
-
-1. The user supplies a target IP address or hostname.
-2. The scanner resolves hostnames to an IPv4 address.
-3. A thread pool scans each port in the selected range.
-4. If a TCP connection succeeds, the port is marked as open.
-5. The scanner attempts to identify the service and capture a banner.
-6. Results are printed to the terminal and can optionally be saved to a file.
-
-## Requirements
-
-- macOS, Linux, or Windows
-- Python 3.10 or newer
-- Network access to an authorized target
-
-This project uses only the Python standard library, so no third-party packages are required.
-
-## Step-by-Step Setup on Mac
-
-1. Open Terminal.
-2. Move into the project folder:
-
-   ```bash
-   cd /path/to/professional-port-scanner
-   ```
-
-3. Confirm Python 3 is installed:
-
-   ```bash
-   python3 --version
-   ```
-
-4. Create a virtual environment:
-
-   ```bash
-   python3 -m venv .venv
-   ```
-
-5. Activate the virtual environment:
-
-   ```bash
-   source .venv/bin/activate
-   ```
-
-6. Install dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Step-by-Step Run Instructions
-
-Run a basic scan against an authorized target:
+If the project is on GitHub, run:
 
 ```bash
-python3 main.py 127.0.0.1 -s 1 -e 1024
+git clone https://github.com/prajwolacharyaa/professional-python-port-scanner.git
+cd professional-python-port-scanner
 ```
 
-Run a faster scan with custom timeout and worker count:
+If you copied the project manually, go into the project folder with:
 
 ```bash
-python3 main.py scanme.nmap.org -s 20 -e 200 -t 0.75 -w 150
+cd professional-python-port-scanner
 ```
 
-Save results to a text report:
+### Step 3: Check Python
 
 ```bash
-python3 main.py 127.0.0.1 -s 1 -e 1024 -o scan_results/local_report.txt
+python3 --version
 ```
 
-Save results to JSON:
+If Python is missing, install it:
 
 ```bash
-python3 main.py 127.0.0.1 -s 1 -e 1024 -o scan_results/local_report.json
+sudo apt update
+sudo apt install -y python3 python3-venv python3-pip git
 ```
 
-You can also run the package directly:
+### Step 4: Check project files
 
 ```bash
-python3 -m port_scanner 127.0.0.1 -s 1 -e 1024
+ls
 ```
 
-## Usage Reference
+You should see:
+
+- `README.md`
+- `main.py`
+- `requirements.txt`
+- `port_scanner`
+- `tests`
+
+### Step 5: Create a virtual environment
 
 ```bash
-python3 main.py <target> [options]
+python3 -m venv .venv
 ```
 
-### Arguments
+### Step 6: Activate the virtual environment
 
-- `target`: Target hostname or IPv4 address
-
-### Options
-
-- `-s, --start-port`: Starting port number
-- `-e, --end-port`: Ending port number
-- `-t, --timeout`: Socket timeout in seconds
-- `-w, --workers`: Number of worker threads
-- `-o, --output`: Output path for `.txt` or `.json` results
-- `--banner-bytes`: Maximum banner size to capture
-- `--version`: Show project version
-
-## Example Output
-
-```text
-============================================================
-  Professional Port Scanner
-  Reconnaissance and service detection for authorized labs
-============================================================
-
-Scan Summary
-Target       : 127.0.0.1 (127.0.0.1)
-Port Range   : 20-100
-Open Ports   : 1
-Duration     : 0.143 seconds
-
-Discovered Services
-PORT    STATE     SERVICE           RESPONSE    BANNER
----------------------------------------------------------------
-80      open      http              1.42 ms     HTTP/1.1 200 OK
+```bash
+source .venv/bin/activate
 ```
 
-## Running Tests
+### Step 7: Install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 8: Check syntax
+
+```bash
+python3 -m compileall main.py port_scanner tests
+```
+
+### Step 9: Run tests
 
 ```bash
 python3 -m unittest discover -s tests -v
 ```
 
-## GitHub Upload Instructions
+### Step 10: Run the scanner
 
-1. Create a new repository on GitHub.
-2. In Terminal, move into this project folder.
-3. Initialize Git:
+```bash
+python3 main.py 127.0.0.1 -s 1 -e 100
+```
 
-   ```bash
-   git init
-   ```
+### Step 11: Save scan results
 
-4. Add the files:
+```bash
+python3 main.py 127.0.0.1 -s 1 -e 100 -o scan_results/report.json
+```
 
-   ```bash
-   git add .
-   ```
+### Step 12: Check the saved file
 
-5. Create your first commit:
+```bash
+cat scan_results/report.json
+```
 
-   ```bash
-   git commit -m "Initial commit: professional Python port scanner"
-   ```
+### Step 13: Test invalid input handling
 
-6. Connect your GitHub repository:
+```bash
+python3 main.py 127.0.0.1 -s 100 -e 50
+```
 
-   ```bash
-   git remote add origin https://github.com/your-username/your-repo-name.git
-   ```
+You should see a clean error message.
 
-7. Push the code:
+## To Do in Windows
 
-   ```bash
-   git branch -M main
-   git push -u origin main
-   ```
+### Step 1: Install Python
 
-## Security and Deployment Notes
+Download and install Python from [python.org](https://www.python.org/downloads/windows/).
 
-- Run this only in lab environments or on systems you own or are authorized to test.
-- Some services do not return banners, so service detection is best-effort rather than guaranteed.
-- High thread counts can cause noisy traffic or unstable results on slower systems.
-- Firewalls, IDS, or rate limits can affect scan accuracy.
-- Local execution is recommended; this project is not designed as an internet-facing deployed service.
+Important:
+- During installation, check `Add Python to PATH`
 
-## Suggested Future Upgrades
+### Step 2: Download or clone the project
 
-- UDP scanning support
-- CIDR range and subnet scanning
-- CSV export
-- Nmap-style service fingerprinting
-- OS detection experiments
-- Progress bars and richer terminal dashboards
-- Config file support
-- Unit tests for additional probe types
+Option 1: Download ZIP from GitHub and extract it.
 
-## Portfolio Talking Points
+Option 2: Clone with Git:
 
-If you showcase this project in a portfolio or interview, you can explain:
+```powershell
+git clone https://github.com/prajwolacharyaa/professional-python-port-scanner.git
+cd professional-python-port-scanner
+```
 
-- How TCP connect scans work
-- Why timeouts and threading matter in network tooling
-- The limits of banner grabbing
-- How modular code improves maintainability
-- How security tools should include ethical safeguards and clear documentation
+### Step 3: Open Command Prompt or PowerShell
+
+Go to the project folder:
+
+```powershell
+cd professional-python-port-scanner
+```
+
+### Step 4: Check Python
+
+```powershell
+python --version
+```
+
+If `python` does not work, try:
+
+```powershell
+python3 --version
+```
+
+### Step 5: Create a virtual environment
+
+```powershell
+python -m venv .venv
+```
+
+### Step 6: Activate the virtual environment
+
+In PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+In Command Prompt:
+
+```cmd
+.venv\Scripts\activate.bat
+```
+
+### Step 7: Install requirements
+
+```powershell
+pip install -r requirements.txt
+```
+
+### Step 8: Check syntax
+
+```powershell
+python -m compileall main.py port_scanner tests
+```
+
+### Step 9: Run tests
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+### Step 10: Run the scanner
+
+```powershell
+python main.py 127.0.0.1 -s 1 -e 100
+```
+
+### Step 11: Save scan results
+
+```powershell
+python main.py 127.0.0.1 -s 1 -e 100 -o scan_results\report.json
+```
+
+### Step 12: Open the saved file
+
+```powershell
+type scan_results\report.json
+```
+
+## To Do in Mac
+
+### Step 1: Open Terminal
+
+Press `Command + Space`, type `Terminal`, and open it.
+
+### Step 2: Go to the project folder
+
+If you already have the project locally:
+
+```bash
+cd /Users/prajwolacharya/Documents/Codex/2026-05-07-create-a-complete-professional-github-ready
+```
+
+If you want to clone from GitHub:
+
+```bash
+git clone https://github.com/prajwolacharyaa/professional-python-port-scanner.git
+cd professional-python-port-scanner
+```
+
+### Step 3: Check Python
+
+```bash
+python3 --version
+```
+
+### Step 4: Create a virtual environment
+
+```bash
+python3 -m venv .venv
+```
+
+### Step 5: Activate the virtual environment
+
+```bash
+source .venv/bin/activate
+```
+
+### Step 6: Install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 7: Check syntax
+
+```bash
+python3 -m compileall main.py port_scanner tests
+```
+
+### Step 8: Run tests
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+### Step 9: Run the scanner
+
+```bash
+python3 main.py 127.0.0.1 -s 1 -e 100
+```
+
+### Step 10: Save scan results
+
+```bash
+python3 main.py 127.0.0.1 -s 1 -e 100 -o scan_results/report.json
+```
+
+### Step 11: Check the saved file
+
+```bash
+cat scan_results/report.json
+```
+
+## Quick Commands
+
+### Kali Linux
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 main.py 127.0.0.1 -s 1 -e 100
+python3 main.py 127.0.0.1 -s 1 -e 100 -o scan_results/report.json
+```
+
+### Windows
+
+```powershell
+python -m unittest discover -s tests -v
+python main.py 127.0.0.1 -s 1 -e 100
+python main.py 127.0.0.1 -s 1 -e 100 -o scan_results\report.json
+```
+
+### Mac
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 main.py 127.0.0.1 -s 1 -e 100
+python3 main.py 127.0.0.1 -s 1 -e 100 -o scan_results/report.json
+```
