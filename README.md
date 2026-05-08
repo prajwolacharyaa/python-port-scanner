@@ -1,4 +1,4 @@
-# Note: cange your IP address according to your need, I just use 127.0.0.1 
+# Note: change your IP address according to your need, I just use 127.0.0.1 
 
 # Professional Python Port Scanner
 
